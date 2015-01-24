@@ -55,7 +55,6 @@
             this.writecfg = new System.Windows.Forms.Button();
             this.readcfg = new System.Windows.Forms.Button();
             this.test = new System.Windows.Forms.GroupBox();
-            this.mode = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -84,6 +83,7 @@
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
+            this.mode = new System.Windows.Forms.CheckBox();
             this.comport.SuspendLayout();
             this.cfg.SuspendLayout();
             this.test.SuspendLayout();
@@ -349,26 +349,15 @@
             // 
             // test
             // 
+            this.test.Controls.Add(this.mode);
             this.test.Controls.Add(this.groupBox2);
             this.test.Controls.Add(this.groupBox1);
-            this.test.Controls.Add(this.mode);
             this.test.Location = new System.Drawing.Point(196, 12);
             this.test.Name = "test";
             this.test.Size = new System.Drawing.Size(246, 375);
             this.test.TabIndex = 5;
             this.test.TabStop = false;
             this.test.Text = "测试";
-            // 
-            // mode
-            // 
-            this.mode.AutoSize = true;
-            this.mode.Location = new System.Drawing.Point(6, 20);
-            this.mode.Name = "mode";
-            this.mode.Size = new System.Drawing.Size(71, 16);
-            this.mode.TabIndex = 0;
-            this.mode.TabStop = true;
-            this.mode.Text = "主从选择";
-            this.mode.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -632,6 +621,16 @@
             this.textBox15.Size = new System.Drawing.Size(52, 21);
             this.textBox15.TabIndex = 8;
             // 
+            // mode
+            // 
+            this.mode.AutoSize = true;
+            this.mode.Location = new System.Drawing.Point(14, 22);
+            this.mode.Name = "mode";
+            this.mode.Size = new System.Drawing.Size(72, 16);
+            this.mode.TabIndex = 3;
+            this.mode.Text = "主从选择";
+            this.mode.UseVisualStyleBackColor = true;
+            // 
             // CFG_TOOL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -695,7 +694,6 @@
         private System.Windows.Forms.GroupBox test;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton mode;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox6;
@@ -722,6 +720,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox mode;
     }
 }
 

@@ -50,5 +50,10 @@ namespace RF_MODULE_CFG_TOLL
         {
 
         }
+
+        private void mode_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
