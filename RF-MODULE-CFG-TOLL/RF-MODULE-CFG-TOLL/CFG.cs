@@ -58,16 +58,82 @@ namespace RF_MODULE_CFG_TOLL
 
         private void button1_Click(object sender, EventArgs e)
         {
+            byte[] cmd = new byte[40];
+            int uartbaudrate = Convert.ToInt32(baudrate.Text);
+            int wirelessbaudrate = Convert.ToInt32(airbaudrate.Text);
+            int wirelesschannel = Convert.ToInt32(channel.Text);
+            int wirelesspower = Convert.ToInt32(airpower.Text);
+            byte[] opt = new byte[3];
+            /*None Odd Even Mark Space
+             bit0-2     0-4
+             5/6/7/8
+             bit3-4     5-8
+             1/1.5/2
+             bit5-6     0-2
+             */
+            if(paritybit.Text == "None")
+            {
+                opt[0] = 0;
+            }else if(paritybit.Text == "Odd")
+            {
+                opt[0] = 1;
+            }else if(paritybit.Text == "Even")
+            {
+                opt[0] = 2;
+            }else if(paritybit.Text == "Mark")
+            {
+                opt[0] = 3;
+            }else if(paritybit.Text == "Space")
+            {
+                opt[0] = 4;
+            }else{
+            }
+            if (databit.Text == "5")
+            {
+                opt[1] = 0;
+            } else if (databit.Text == "6")
+            {
+                opt[1] = 1;
+            }else if (databit.Text == "7")
+            {
+                opt[1] = 2;
+            }else if (databit.Text == "8")
+            {
+                opt[1] = 3;
+            }else
+            {
 
-        }
+            }
+            if (stopbit.Text == "1")
+            {
+                opt[2] = 0;
+            }
+            else if (stopbit.Text == "1.5")
+            {
+                opt[2] = 1;
+            }
+            else if (stopbit.Text == "2")
+            {
+                opt[2] = 2;
+            }
+            else
+            {
+ 
+            }
+            cmd[0] = (byte)'w';
+            cmd[1] = (byte)(uartbaudrate / 1000000);
+            cmd[2] = (byte)(uartbaudrate % 1000000 / 100000);
+            cmd[3] = (byte)(uartbaudrate % 100000 / 10000);
+            cmd[4] = (byte)(uartbaudrate % 10000 / 1000);
+            cmd[5] = (byte)(uartbaudrate % 1000 / 100);
+            cmd[6] = (byte)(uartbaudrate % 100 / 10);
+            cmd[7] = (byte)(uartbaudrate % 10);
+            cmd[8] = opt[0];
+            cmd[9] = opt[1];
+            cmd[10] = opt[2];
 
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label20_Click(object sender, EventArgs e)
-        {
+            string pcack = System.Text.Encoding.Default.GetString(cmd);
+            serialPort.WriteLine(pcack);
 
         }
 
@@ -208,7 +274,62 @@ namespace RF_MODULE_CFG_TOLL
 
         private void readcfg_Click(object sender, EventArgs e)
         {
+            byte[] cmd = new byte[40];
+            cmd[0] = (byte)'r';
+            string pcack = System.Text.Encoding.Default.GetString(cmd);
+            serialPort.WriteLine(pcack);
 
+        }
+
+        private void airbaudrate_Leave(object sender, EventArgs e)
+        {
+            if (airbaudrate.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(airbaudrate.Text, out tmp))
+            {
+                airbaudrate.Text = "";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 20000)
+            {
+                airbaudrate.Text = "";
+                MessageBox.Show("无线速率范围：0~20k");
+            }
+        }
+
+        private void channel_Leave(object sender, EventArgs e)
+        {
+            if (channel.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(channel.Text, out tmp))
+            {
+                channel.Text = "";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 255)
+            {
+                channel.Text = "";
+                MessageBox.Show("信道范围：0~255");
+            }
+        }
+
+        private void airpower_Leave(object sender, EventArgs e)
+        {
+            if (airpower.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(airpower.Text, out tmp))
+            {
+                airpower.Text = "";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 0x7f)
+            {
+                airpower.Text = "";
+                MessageBox.Show("功率范围：0~127");
+            }
         }
     }
 }

@@ -36,6 +36,9 @@
             this.opendevice = new System.Windows.Forms.Button();
             this.serialportlist = new System.Windows.Forms.ComboBox();
             this.cfg = new System.Windows.Forms.GroupBox();
+            this.airpower = new System.Windows.Forms.TextBox();
+            this.channel = new System.Windows.Forms.TextBox();
+            this.airbaudrate = new System.Windows.Forms.TextBox();
             this.readcfg = new System.Windows.Forms.Button();
             this.writecfg = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -83,9 +86,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.airbaudrate = new System.Windows.Forms.TextBox();
-            this.channel = new System.Windows.Forms.TextBox();
-            this.airpower = new System.Windows.Forms.TextBox();
             this.comport.SuspendLayout();
             this.cfg.SuspendLayout();
             this.test.SuspendLayout();
@@ -181,6 +181,30 @@
             this.cfg.TabIndex = 1;
             this.cfg.TabStop = false;
             this.cfg.Text = "配置";
+            // 
+            // airpower
+            // 
+            this.airpower.Location = new System.Drawing.Point(77, 171);
+            this.airpower.Name = "airpower";
+            this.airpower.Size = new System.Drawing.Size(83, 21);
+            this.airpower.TabIndex = 17;
+            this.airpower.Leave += new System.EventHandler(this.airpower_Leave);
+            // 
+            // channel
+            // 
+            this.channel.Location = new System.Drawing.Point(77, 144);
+            this.channel.Name = "channel";
+            this.channel.Size = new System.Drawing.Size(83, 21);
+            this.channel.TabIndex = 16;
+            this.channel.Leave += new System.EventHandler(this.channel_Leave);
+            // 
+            // airbaudrate
+            // 
+            this.airbaudrate.Location = new System.Drawing.Point(77, 118);
+            this.airbaudrate.Name = "airbaudrate";
+            this.airbaudrate.Size = new System.Drawing.Size(83, 21);
+            this.airbaudrate.TabIndex = 15;
+            this.airbaudrate.Leave += new System.EventHandler(this.airbaudrate_Leave);
             // 
             // readcfg
             // 
@@ -459,7 +483,6 @@
             this.label20.Size = new System.Drawing.Size(53, 12);
             this.label20.TabIndex = 2;
             this.label20.Text = "接收包数";
-            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // label19
             // 
@@ -572,7 +595,6 @@
             this.label16.Size = new System.Drawing.Size(53, 12);
             this.label16.TabIndex = 9;
             this.label16.Text = "从机场强";
-            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // tsthostpktsendcnt
             // 
@@ -647,27 +669,6 @@
             this.label11.Size = new System.Drawing.Size(53, 12);
             this.label11.TabIndex = 0;
             this.label11.Text = "工作信道";
-            // 
-            // airbaudrate
-            // 
-            this.airbaudrate.Location = new System.Drawing.Point(77, 118);
-            this.airbaudrate.Name = "airbaudrate";
-            this.airbaudrate.Size = new System.Drawing.Size(83, 21);
-            this.airbaudrate.TabIndex = 15;
-            // 
-            // channel
-            // 
-            this.channel.Location = new System.Drawing.Point(77, 144);
-            this.channel.Name = "channel";
-            this.channel.Size = new System.Drawing.Size(83, 21);
-            this.channel.TabIndex = 16;
-            // 
-            // airpower
-            // 
-            this.airpower.Location = new System.Drawing.Point(77, 171);
-            this.airpower.Name = "airpower";
-            this.airpower.Size = new System.Drawing.Size(83, 21);
-            this.airpower.TabIndex = 17;
             // 
             // CFG_TOOL
             // 
