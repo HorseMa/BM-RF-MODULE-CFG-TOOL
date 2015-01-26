@@ -36,6 +36,9 @@ namespace RF_MODULE_CFG_TOLL
 
             System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
             serialportlist.Show();
+
+            mode.Checked = true ;
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -110,6 +113,8 @@ namespace RF_MODULE_CFG_TOLL
 
         private void opendevice_Click(object sender, EventArgs e)
         {
+            if (serialportlist.SelectedItem == null)
+                return;
             if (opendevice.Text == "打开端口")
             {
                 serialPort.PortName = serialportlist.SelectedItem.ToString();
@@ -167,6 +172,43 @@ namespace RF_MODULE_CFG_TOLL
             {
                 slaveteststart.Text = "开始测试";
             }
+        }
+
+        private void mode_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (mode.Checked == true)
+            {
+                tstslavebaudrate.Enabled = false;
+                tstslavechannel.Enabled = false;
+                tstslavepktrcvcnt.Enabled = false;
+                tstslaverssi.Enabled = false;
+                slaveteststart.Enabled = false;
+
+                tsthostairbaudrate.Enabled = true;
+                tsthostairpower.Enabled = true;
+                tsthostchannel.Enabled = true;
+                tsthostdatalen.Enabled = true;
+                hostteststart.Enabled = true;
+            }
+            else
+            {
+                tstslavebaudrate.Enabled = true ;
+                tstslavechannel.Enabled = true ;
+                tstslavepktrcvcnt.Enabled = false;
+                tstslaverssi.Enabled = false;
+                slaveteststart.Enabled = true ;
+
+                hostteststart.Enabled = false ;
+                tsthostairbaudrate.Enabled = false ;
+                tsthostairpower.Enabled = false ;
+                tsthostchannel.Enabled = false ;
+                tsthostdatalen.Enabled = false ;
+            }
+        }
+
+        private void readcfg_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

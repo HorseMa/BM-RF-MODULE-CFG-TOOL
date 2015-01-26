@@ -38,11 +38,8 @@
             this.cfg = new System.Windows.Forms.GroupBox();
             this.readcfg = new System.Windows.Forms.Button();
             this.writecfg = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,34 +55,37 @@
             this.test = new System.Windows.Forms.GroupBox();
             this.mode = new System.Windows.Forms.CheckBox();
             this.gbtestslave = new System.Windows.Forms.GroupBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.tstslavepktrcvcnt = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.tstslaverssi = new System.Windows.Forms.TextBox();
+            this.tstslavebaudrate = new System.Windows.Forms.TextBox();
+            this.tstslavechannel = new System.Windows.Forms.TextBox();
             this.slaveteststart = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.gbtesthost = new System.Windows.Forms.GroupBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.tsthostairpower = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.hostteststart = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tsthosterr = new System.Windows.Forms.TextBox();
+            this.tsthostpktrcvcnt = new System.Windows.Forms.TextBox();
+            this.tsthostrssi = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tsthostpktsendcnt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tsthostdatalen = new System.Windows.Forms.TextBox();
+            this.tsthostairbaudrate = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tsthostchannel = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
+            this.airbaudrate = new System.Windows.Forms.TextBox();
+            this.channel = new System.Windows.Forms.TextBox();
+            this.airpower = new System.Windows.Forms.TextBox();
             this.comport.SuspendLayout();
             this.cfg.SuspendLayout();
             this.test.SuspendLayout();
@@ -159,13 +159,13 @@
             // 
             // cfg
             // 
+            this.cfg.Controls.Add(this.airpower);
+            this.cfg.Controls.Add(this.channel);
+            this.cfg.Controls.Add(this.airbaudrate);
             this.cfg.Controls.Add(this.readcfg);
             this.cfg.Controls.Add(this.writecfg);
-            this.cfg.Controls.Add(this.comboBox4);
             this.cfg.Controls.Add(this.label10);
-            this.cfg.Controls.Add(this.comboBox3);
             this.cfg.Controls.Add(this.label6);
-            this.cfg.Controls.Add(this.comboBox2);
             this.cfg.Controls.Add(this.label5);
             this.cfg.Controls.Add(this.label4);
             this.cfg.Controls.Add(this.label3);
@@ -190,6 +190,7 @@
             this.readcfg.TabIndex = 14;
             this.readcfg.Text = "读配置";
             this.readcfg.UseVisualStyleBackColor = true;
+            this.readcfg.Click += new System.EventHandler(this.readcfg_Click);
             // 
             // writecfg
             // 
@@ -201,14 +202,6 @@
             this.writecfg.UseVisualStyleBackColor = true;
             this.writecfg.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(77, 171);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(83, 20);
-            this.comboBox4.TabIndex = 13;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -217,14 +210,6 @@
             this.label10.Size = new System.Drawing.Size(53, 12);
             this.label10.TabIndex = 12;
             this.label10.Text = "无线功率";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(77, 145);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(83, 20);
-            this.comboBox3.TabIndex = 11;
             // 
             // label6
             // 
@@ -235,14 +220,6 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "无线信道";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(77, 121);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(83, 20);
-            this.comboBox2.TabIndex = 9;
             // 
             // label5
             // 
@@ -405,14 +382,15 @@
             this.mode.TabIndex = 3;
             this.mode.Text = "主从选择";
             this.mode.UseVisualStyleBackColor = true;
+            this.mode.CheckedChanged += new System.EventHandler(this.mode_CheckedChanged_1);
             // 
             // gbtestslave
             // 
-            this.gbtestslave.Controls.Add(this.textBox15);
+            this.gbtestslave.Controls.Add(this.tstslavepktrcvcnt);
             this.gbtestslave.Controls.Add(this.label22);
-            this.gbtestslave.Controls.Add(this.textBox13);
-            this.gbtestslave.Controls.Add(this.textBox12);
-            this.gbtestslave.Controls.Add(this.textBox11);
+            this.gbtestslave.Controls.Add(this.tstslaverssi);
+            this.gbtestslave.Controls.Add(this.tstslavebaudrate);
+            this.gbtestslave.Controls.Add(this.tstslavechannel);
             this.gbtestslave.Controls.Add(this.slaveteststart);
             this.gbtestslave.Controls.Add(this.label20);
             this.gbtestslave.Controls.Add(this.label19);
@@ -424,13 +402,13 @@
             this.gbtestslave.TabStop = false;
             this.gbtestslave.Text = "从机";
             // 
-            // textBox15
+            // tstslavepktrcvcnt
             // 
-            this.textBox15.Enabled = false;
-            this.textBox15.Location = new System.Drawing.Point(176, 49);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(52, 21);
-            this.textBox15.TabIndex = 8;
+            this.tstslavepktrcvcnt.Enabled = false;
+            this.tstslavepktrcvcnt.Location = new System.Drawing.Point(176, 49);
+            this.tstslavepktrcvcnt.Name = "tstslavepktrcvcnt";
+            this.tstslavepktrcvcnt.Size = new System.Drawing.Size(52, 21);
+            this.tstslavepktrcvcnt.TabIndex = 8;
             // 
             // label22
             // 
@@ -441,27 +419,27 @@
             this.label22.TabIndex = 7;
             this.label22.Text = "无线速率";
             // 
-            // textBox13
+            // tstslaverssi
             // 
-            this.textBox13.Enabled = false;
-            this.textBox13.Location = new System.Drawing.Point(65, 49);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(47, 21);
-            this.textBox13.TabIndex = 6;
+            this.tstslaverssi.Enabled = false;
+            this.tstslaverssi.Location = new System.Drawing.Point(65, 49);
+            this.tstslaverssi.Name = "tstslaverssi";
+            this.tstslaverssi.Size = new System.Drawing.Size(47, 21);
+            this.tstslaverssi.TabIndex = 6;
             // 
-            // textBox12
+            // tstslavebaudrate
             // 
-            this.textBox12.Location = new System.Drawing.Point(176, 23);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(52, 21);
-            this.textBox12.TabIndex = 5;
+            this.tstslavebaudrate.Location = new System.Drawing.Point(176, 23);
+            this.tstslavebaudrate.Name = "tstslavebaudrate";
+            this.tstslavebaudrate.Size = new System.Drawing.Size(52, 21);
+            this.tstslavebaudrate.TabIndex = 5;
             // 
-            // textBox11
+            // tstslavechannel
             // 
-            this.textBox11.Location = new System.Drawing.Point(65, 23);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(47, 21);
-            this.textBox11.TabIndex = 4;
+            this.tstslavechannel.Location = new System.Drawing.Point(65, 23);
+            this.tstslavechannel.Name = "tstslavechannel";
+            this.tstslavechannel.Size = new System.Drawing.Size(47, 21);
+            this.tstslavechannel.TabIndex = 4;
             // 
             // slaveteststart
             // 
@@ -503,21 +481,21 @@
             // 
             // gbtesthost
             // 
-            this.gbtesthost.Controls.Add(this.textBox14);
+            this.gbtesthost.Controls.Add(this.tsthostairpower);
             this.gbtesthost.Controls.Add(this.label21);
             this.gbtesthost.Controls.Add(this.hostteststart);
-            this.gbtesthost.Controls.Add(this.textBox10);
-            this.gbtesthost.Controls.Add(this.textBox9);
-            this.gbtesthost.Controls.Add(this.textBox8);
+            this.gbtesthost.Controls.Add(this.tsthosterr);
+            this.gbtesthost.Controls.Add(this.tsthostpktrcvcnt);
+            this.gbtesthost.Controls.Add(this.tsthostrssi);
             this.gbtesthost.Controls.Add(this.label17);
             this.gbtesthost.Controls.Add(this.label16);
-            this.gbtesthost.Controls.Add(this.textBox7);
+            this.gbtesthost.Controls.Add(this.tsthostpktsendcnt);
             this.gbtesthost.Controls.Add(this.label15);
             this.gbtesthost.Controls.Add(this.label14);
-            this.gbtesthost.Controls.Add(this.textBox6);
-            this.gbtesthost.Controls.Add(this.textBox5);
+            this.gbtesthost.Controls.Add(this.tsthostdatalen);
+            this.gbtesthost.Controls.Add(this.tsthostairbaudrate);
             this.gbtesthost.Controls.Add(this.label13);
-            this.gbtesthost.Controls.Add(this.textBox4);
+            this.gbtesthost.Controls.Add(this.tsthostchannel);
             this.gbtesthost.Controls.Add(this.label12);
             this.gbtesthost.Controls.Add(this.label11);
             this.gbtesthost.Location = new System.Drawing.Point(6, 52);
@@ -527,12 +505,12 @@
             this.gbtesthost.TabStop = false;
             this.gbtesthost.Text = "主机";
             // 
-            // textBox14
+            // tsthostairpower
             // 
-            this.textBox14.Location = new System.Drawing.Point(176, 52);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(52, 21);
-            this.textBox14.TabIndex = 16;
+            this.tsthostairpower.Location = new System.Drawing.Point(176, 52);
+            this.tsthostairpower.Name = "tsthostairpower";
+            this.tsthostairpower.Size = new System.Drawing.Size(52, 21);
+            this.tsthostairpower.TabIndex = 16;
             // 
             // label21
             // 
@@ -553,29 +531,29 @@
             this.hostteststart.UseVisualStyleBackColor = true;
             this.hostteststart.Click += new System.EventHandler(this.hostteststart_Click);
             // 
-            // textBox10
+            // tsthosterr
             // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(176, 104);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(52, 21);
-            this.textBox10.TabIndex = 13;
+            this.tsthosterr.Enabled = false;
+            this.tsthosterr.Location = new System.Drawing.Point(176, 104);
+            this.tsthosterr.Name = "tsthosterr";
+            this.tsthosterr.Size = new System.Drawing.Size(52, 21);
+            this.tsthosterr.TabIndex = 13;
             // 
-            // textBox9
+            // tsthostpktrcvcnt
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(176, 78);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(52, 21);
-            this.textBox9.TabIndex = 12;
+            this.tsthostpktrcvcnt.Enabled = false;
+            this.tsthostpktrcvcnt.Location = new System.Drawing.Point(176, 78);
+            this.tsthostpktrcvcnt.Name = "tsthostpktrcvcnt";
+            this.tsthostpktrcvcnt.Size = new System.Drawing.Size(52, 21);
+            this.tsthostpktrcvcnt.TabIndex = 12;
             // 
-            // textBox8
+            // tsthostrssi
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(65, 104);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(47, 21);
-            this.textBox8.TabIndex = 11;
+            this.tsthostrssi.Enabled = false;
+            this.tsthostrssi.Location = new System.Drawing.Point(65, 104);
+            this.tsthostrssi.Name = "tsthostrssi";
+            this.tsthostrssi.Size = new System.Drawing.Size(47, 21);
+            this.tsthostrssi.TabIndex = 11;
             // 
             // label17
             // 
@@ -596,13 +574,13 @@
             this.label16.Text = "从机场强";
             this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
-            // textBox7
+            // tsthostpktsendcnt
             // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(65, 78);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(47, 21);
-            this.textBox7.TabIndex = 8;
+            this.tsthostpktsendcnt.Enabled = false;
+            this.tsthostpktsendcnt.Location = new System.Drawing.Point(65, 78);
+            this.tsthostpktsendcnt.Name = "tsthostpktsendcnt";
+            this.tsthostpktsendcnt.Size = new System.Drawing.Size(47, 21);
+            this.tsthostpktsendcnt.TabIndex = 8;
             // 
             // label15
             // 
@@ -622,19 +600,19 @@
             this.label14.TabIndex = 6;
             this.label14.Text = "发送包数";
             // 
-            // textBox6
+            // tsthostdatalen
             // 
-            this.textBox6.Location = new System.Drawing.Point(65, 52);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(47, 21);
-            this.textBox6.TabIndex = 5;
+            this.tsthostdatalen.Location = new System.Drawing.Point(65, 52);
+            this.tsthostdatalen.Name = "tsthostdatalen";
+            this.tsthostdatalen.Size = new System.Drawing.Size(47, 21);
+            this.tsthostdatalen.TabIndex = 5;
             // 
-            // textBox5
+            // tsthostairbaudrate
             // 
-            this.textBox5.Location = new System.Drawing.Point(176, 25);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(52, 21);
-            this.textBox5.TabIndex = 4;
+            this.tsthostairbaudrate.Location = new System.Drawing.Point(176, 25);
+            this.tsthostairbaudrate.Name = "tsthostairbaudrate";
+            this.tsthostairbaudrate.Size = new System.Drawing.Size(52, 21);
+            this.tsthostairbaudrate.TabIndex = 4;
             // 
             // label13
             // 
@@ -645,12 +623,12 @@
             this.label13.TabIndex = 3;
             this.label13.Text = "发射功率";
             // 
-            // textBox4
+            // tsthostchannel
             // 
-            this.textBox4.Location = new System.Drawing.Point(65, 25);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(47, 21);
-            this.textBox4.TabIndex = 2;
+            this.tsthostchannel.Location = new System.Drawing.Point(65, 25);
+            this.tsthostchannel.Name = "tsthostchannel";
+            this.tsthostchannel.Size = new System.Drawing.Size(47, 21);
+            this.tsthostchannel.TabIndex = 2;
             // 
             // label12
             // 
@@ -669,6 +647,27 @@
             this.label11.Size = new System.Drawing.Size(53, 12);
             this.label11.TabIndex = 0;
             this.label11.Text = "工作信道";
+            // 
+            // airbaudrate
+            // 
+            this.airbaudrate.Location = new System.Drawing.Point(77, 118);
+            this.airbaudrate.Name = "airbaudrate";
+            this.airbaudrate.Size = new System.Drawing.Size(83, 21);
+            this.airbaudrate.TabIndex = 15;
+            // 
+            // channel
+            // 
+            this.channel.Location = new System.Drawing.Point(77, 144);
+            this.channel.Name = "channel";
+            this.channel.Size = new System.Drawing.Size(83, 21);
+            this.channel.TabIndex = 16;
+            // 
+            // airpower
+            // 
+            this.airpower.Location = new System.Drawing.Point(77, 171);
+            this.airpower.Name = "airpower";
+            this.airpower.Size = new System.Drawing.Size(83, 21);
+            this.airpower.TabIndex = 17;
             // 
             // CFG_TOOL
             // 
@@ -716,17 +715,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button writecfg;
         private System.Windows.Forms.Button readcfg;
@@ -735,32 +731,35 @@
         private System.Windows.Forms.GroupBox gbtesthost;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tsthostdatalen;
+        private System.Windows.Forms.TextBox tsthostairbaudrate;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tsthostchannel;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox tsthostpktsendcnt;
+        private System.Windows.Forms.TextBox tsthostrssi;
+        private System.Windows.Forms.TextBox tsthosterr;
+        private System.Windows.Forms.TextBox tsthostpktrcvcnt;
         private System.Windows.Forms.Button slaveteststart;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button hostteststart;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox tstslaverssi;
+        private System.Windows.Forms.TextBox tstslavebaudrate;
+        private System.Windows.Forms.TextBox tstslavechannel;
+        private System.Windows.Forms.TextBox tsthostairpower;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox tstslavepktrcvcnt;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox mode;
         private System.IO.Ports.SerialPort serialPort;
+        private System.Windows.Forms.TextBox airpower;
+        private System.Windows.Forms.TextBox channel;
+        private System.Windows.Forms.TextBox airbaudrate;
     }
 }
 
