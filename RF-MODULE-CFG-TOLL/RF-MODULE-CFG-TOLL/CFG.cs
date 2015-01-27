@@ -62,6 +62,11 @@ namespace RF_MODULE_CFG_TOLL
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (serialPort.IsOpen == false)
+            {
+                MessageBox.Show("请连接模块");
+                return;
+            }
             byte[] cmd = new byte[40];
             int uartbaudrate = Convert.ToInt32(baudrate.Text);
             int wirelessbaudrate = Convert.ToInt32(airbaudrate.Text);
@@ -77,48 +82,48 @@ namespace RF_MODULE_CFG_TOLL
              */
             if(paritybit.Text == "None")
             {
-                opt[0] = 0;
+                opt[0] = (byte)'0';
             }else if(paritybit.Text == "Odd")
             {
-                opt[0] = 1;
+                opt[0] = (byte)'1';
             }else if(paritybit.Text == "Even")
             {
-                opt[0] = 2;
+                opt[0] = (byte)'2';
             }else if(paritybit.Text == "Mark")
             {
-                opt[0] = 3;
+                opt[0] = (byte)'3';
             }else if(paritybit.Text == "Space")
             {
-                opt[0] = 4;
+                opt[0] = (byte)'4';
             }else{
             }
             if (databit.Text == "5")
             {
-                opt[1] = 0;
+                opt[1] = (byte)'0';
             } else if (databit.Text == "6")
             {
-                opt[1] = 1;
+                opt[1] = (byte)'1';
             }else if (databit.Text == "7")
             {
-                opt[1] = 2;
+                opt[1] = (byte)'2';
             }else if (databit.Text == "8")
             {
-                opt[1] = 3;
+                opt[1] = (byte)'3';
             }else
             {
 
             }
             if (stopbit.Text == "1")
             {
-                opt[2] = 0;
+                opt[2] = (byte)'0';
             }
             else if (stopbit.Text == "1.5")
             {
-                opt[2] = 1;
+                opt[2] = (byte)'1';
             }
             else if (stopbit.Text == "2")
             {
-                opt[2] = 2;
+                opt[2] = (byte)'2';
             }
             else
             {
@@ -234,6 +239,11 @@ namespace RF_MODULE_CFG_TOLL
 
         private void hostteststart_Click(object sender, EventArgs e)
         {
+            if (serialPort.IsOpen == false)
+            {
+                MessageBox.Show("请连接模块");
+                return;
+            }
             if (hostteststart.Text == "开始测试")
             {
                 hostteststart.Text = "停止测试";
@@ -246,6 +256,11 @@ namespace RF_MODULE_CFG_TOLL
 
         private void slaveteststart_Click(object sender, EventArgs e)
         {
+            if (serialPort.IsOpen == false)
+            {
+                MessageBox.Show("请连接模块");
+                return;
+            }
             if (slaveteststart.Text == "开始测试")
             {
                 slaveteststart.Text = "停止测试";
@@ -290,6 +305,11 @@ namespace RF_MODULE_CFG_TOLL
 
         private void readcfg_Click(object sender, EventArgs e)
         {
+            if (serialPort.IsOpen == false)
+            {
+                MessageBox.Show("请连接模块");
+                return;
+            }
             byte[] cmd = new byte[40];
             cmd[0] = (byte)'r';
             string pcack = System.Text.Encoding.Default.GetString(cmd);
