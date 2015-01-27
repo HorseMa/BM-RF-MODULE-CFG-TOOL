@@ -38,6 +38,10 @@ namespace RF_MODULE_CFG_TOLL
             serialportlist.Show();
 
             mode.Checked = true ;
+            baudrate.SelectedIndex = 6;
+            paritybit.SelectedIndex = 0;
+            databit.SelectedIndex = 3;
+            stopbit.SelectedIndex = 0;
 
         }
 
@@ -120,18 +124,30 @@ namespace RF_MODULE_CFG_TOLL
             {
  
             }
-            cmd[0] = (byte)'w';
-            cmd[1] = (byte)(uartbaudrate / 1000000);
-            cmd[2] = (byte)(uartbaudrate % 1000000 / 100000);
-            cmd[3] = (byte)(uartbaudrate % 100000 / 10000);
-            cmd[4] = (byte)(uartbaudrate % 10000 / 1000);
-            cmd[5] = (byte)(uartbaudrate % 1000 / 100);
-            cmd[6] = (byte)(uartbaudrate % 100 / 10);
-            cmd[7] = (byte)(uartbaudrate % 10);
+            cmd[0] = (byte)'w'; // cmd:write config
+            cmd[1] = (byte)(uartbaudrate / 1000000 + 0x30);    // uartbaudrate
+            cmd[2] = (byte)(uartbaudrate % 1000000 / 100000 + 0x30);
+            cmd[3] = (byte)(uartbaudrate % 100000 / 10000 + 0x30);
+            cmd[4] = (byte)(uartbaudrate % 10000 / 1000 + 0x30);
+            cmd[5] = (byte)(uartbaudrate % 1000 / 100 + 0x30);
+            cmd[6] = (byte)(uartbaudrate % 100 / 10 + 0x30);
+            cmd[7] = (byte)(uartbaudrate % 10 + 0x30);
             cmd[8] = opt[0];
             cmd[9] = opt[1];
             cmd[10] = opt[2];
-
+            cmd[11] = (byte)(wirelessbaudrate / 1000000 + 0x30);
+            cmd[12] = (byte)(wirelessbaudrate % 1000000 / 100000 + 0x30);
+            cmd[13] = (byte)(wirelessbaudrate % 100000 / 10000 + 0x30);
+            cmd[14] = (byte)(wirelessbaudrate % 10000 / 1000 + 0x30);
+            cmd[15] = (byte)(wirelessbaudrate % 1000 / 100 + 0x30);
+            cmd[16] = (byte)(wirelessbaudrate % 100 / 10 + 0x30);
+            cmd[17] = (byte)(wirelessbaudrate % 10 + 0x30);
+            cmd[18] = (byte)(wirelesschannel % 1000 / 100 + 0x30);
+            cmd[19] = (byte)(wirelesschannel % 100 / 10 + 0x30);
+            cmd[20] = (byte)(wirelesschannel % 10 + 0x30);
+            cmd[21] = (byte)(wirelesspower % 1000 / 100 + 0x30);
+            cmd[22] = (byte)(wirelesspower % 100 / 10 + 0x30);
+            cmd[23] = (byte)(wirelesspower % 10 + 0x30);
             string pcack = System.Text.Encoding.Default.GetString(cmd);
             serialPort.WriteLine(pcack);
 
@@ -288,12 +304,12 @@ namespace RF_MODULE_CFG_TOLL
             int tmp;
             if (!int.TryParse(airbaudrate.Text, out tmp))
             {
-                airbaudrate.Text = "";
+                airbaudrate.Text = "10000";
                 MessageBox.Show("请正确输入数字");
             }
             if (tmp > 20000)
             {
-                airbaudrate.Text = "";
+                airbaudrate.Text = "10000";
                 MessageBox.Show("无线速率范围：0~20k");
             }
         }
@@ -305,12 +321,12 @@ namespace RF_MODULE_CFG_TOLL
             int tmp;
             if (!int.TryParse(channel.Text, out tmp))
             {
-                channel.Text = "";
+                channel.Text = "0";
                 MessageBox.Show("请正确输入数字");
             }
             if (tmp > 255)
             {
-                channel.Text = "";
+                channel.Text = "0";
                 MessageBox.Show("信道范围：0~255");
             }
         }
@@ -322,14 +338,117 @@ namespace RF_MODULE_CFG_TOLL
             int tmp;
             if (!int.TryParse(airpower.Text, out tmp))
             {
-                airpower.Text = "";
+                airpower.Text = "127";
                 MessageBox.Show("请正确输入数字");
             }
             if (tmp > 0x7f)
             {
-                airpower.Text = "";
+                airpower.Text = "127";
                 MessageBox.Show("功率范围：0~127");
             }
         }
+
+        private void tsthostchannel_Leave(object sender, EventArgs e)
+        {
+            if (tsthostchannel.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(tsthostchannel.Text, out tmp))
+            {
+                tsthostchannel.Text = "0";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 255)
+            {
+                tsthostchannel.Text = "0";
+                MessageBox.Show("信道范围：0~255");
+            }
+        }
+
+        private void tsthostairbaudrate_Leave(object sender, EventArgs e)
+        {
+            if (tsthostairbaudrate.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(tsthostairbaudrate.Text, out tmp))
+            {
+                tsthostairbaudrate.Text = "10000";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 20000)
+            {
+                tsthostairbaudrate.Text = "10000";
+                MessageBox.Show("无线速率范围：0~20k");
+            }
+        }
+
+        private void tsthostdatalen_Leave(object sender, EventArgs e)
+        {
+            if (tsthostdatalen.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(tsthostdatalen.Text, out tmp))
+            {
+                tsthostdatalen.Text = "10";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 10)
+            {
+                tsthostdatalen.Text = "10";
+                MessageBox.Show("数据长度：0~128byte");
+            }
+        }
+
+        private void tsthostairpower_Leave(object sender, EventArgs e)
+        {
+            if (tsthostairpower.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(tsthostairpower.Text, out tmp))
+            {
+                tsthostairpower.Text = "127";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 0x7f)
+            {
+                tsthostairpower.Text = "127";
+                MessageBox.Show("功率范围：0~127");
+            }
+        }
+
+        private void tstslavechannel_Leave(object sender, EventArgs e)
+        {
+            if (tstslavechannel.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(tstslavechannel.Text, out tmp))
+            {
+                tstslavechannel.Text = "0";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 255)
+            {
+                tstslavechannel.Text = "0";
+                MessageBox.Show("信道范围：0~255");
+            }
+        }
+
+        private void tstslavebaudrate_Leave(object sender, EventArgs e)
+        {
+            if (tstslavebaudrate.Text == "")
+                return;
+            int tmp;
+            if (!int.TryParse(tstslavebaudrate.Text, out tmp))
+            {
+                tstslavebaudrate.Text = "10000";
+                MessageBox.Show("请正确输入数字");
+            }
+            if (tmp > 20000)
+            {
+                tstslavebaudrate.Text = "10000";
+                MessageBox.Show("无线速率范围：0~20k");
+            }
+        }
+
     }
 }

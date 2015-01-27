@@ -188,6 +188,7 @@
             this.airpower.Name = "airpower";
             this.airpower.Size = new System.Drawing.Size(83, 21);
             this.airpower.TabIndex = 17;
+            this.airpower.Text = "127";
             this.airpower.Leave += new System.EventHandler(this.airpower_Leave);
             // 
             // channel
@@ -196,6 +197,7 @@
             this.channel.Name = "channel";
             this.channel.Size = new System.Drawing.Size(83, 21);
             this.channel.TabIndex = 16;
+            this.channel.Text = "0";
             this.channel.Leave += new System.EventHandler(this.channel_Leave);
             // 
             // airbaudrate
@@ -204,6 +206,7 @@
             this.airbaudrate.Name = "airbaudrate";
             this.airbaudrate.Size = new System.Drawing.Size(83, 21);
             this.airbaudrate.TabIndex = 15;
+            this.airbaudrate.Text = "10000";
             this.airbaudrate.Leave += new System.EventHandler(this.airbaudrate_Leave);
             // 
             // readcfg
@@ -457,6 +460,8 @@
             this.tstslavebaudrate.Name = "tstslavebaudrate";
             this.tstslavebaudrate.Size = new System.Drawing.Size(52, 21);
             this.tstslavebaudrate.TabIndex = 5;
+            this.tstslavebaudrate.Text = "10000";
+            this.tstslavebaudrate.Leave += new System.EventHandler(this.tstslavebaudrate_Leave);
             // 
             // tstslavechannel
             // 
@@ -464,6 +469,8 @@
             this.tstslavechannel.Name = "tstslavechannel";
             this.tstslavechannel.Size = new System.Drawing.Size(47, 21);
             this.tstslavechannel.TabIndex = 4;
+            this.tstslavechannel.Text = "0";
+            this.tstslavechannel.Leave += new System.EventHandler(this.tstslavechannel_Leave);
             // 
             // slaveteststart
             // 
@@ -534,6 +541,8 @@
             this.tsthostairpower.Name = "tsthostairpower";
             this.tsthostairpower.Size = new System.Drawing.Size(52, 21);
             this.tsthostairpower.TabIndex = 16;
+            this.tsthostairpower.Text = "127";
+            this.tsthostairpower.Leave += new System.EventHandler(this.tsthostairpower_Leave);
             // 
             // label21
             // 
@@ -628,6 +637,8 @@
             this.tsthostdatalen.Name = "tsthostdatalen";
             this.tsthostdatalen.Size = new System.Drawing.Size(47, 21);
             this.tsthostdatalen.TabIndex = 5;
+            this.tsthostdatalen.Text = "10";
+            this.tsthostdatalen.Leave += new System.EventHandler(this.tsthostdatalen_Leave);
             // 
             // tsthostairbaudrate
             // 
@@ -635,6 +646,8 @@
             this.tsthostairbaudrate.Name = "tsthostairbaudrate";
             this.tsthostairbaudrate.Size = new System.Drawing.Size(52, 21);
             this.tsthostairbaudrate.TabIndex = 4;
+            this.tsthostairbaudrate.Text = "10000";
+            this.tsthostairbaudrate.Leave += new System.EventHandler(this.tsthostairbaudrate_Leave);
             // 
             // label13
             // 
@@ -651,6 +664,8 @@
             this.tsthostchannel.Name = "tsthostchannel";
             this.tsthostchannel.Size = new System.Drawing.Size(47, 21);
             this.tsthostchannel.TabIndex = 2;
+            this.tsthostchannel.Text = "0";
+            this.tsthostchannel.Leave += new System.EventHandler(this.tsthostchannel_Leave);
             // 
             // label12
             // 
