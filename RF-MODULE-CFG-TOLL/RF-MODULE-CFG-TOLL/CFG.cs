@@ -470,5 +470,34 @@ namespace RF_MODULE_CFG_TOLL
             }
         }
 
+        private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string strcmd;
+            byte[] cmd = new byte[100];
+
+            byte[] temp = new byte [10];
+            try
+            {
+                strcmd = serialPort.ReadLine();
+                cmd = System.Text.Encoding.ASCII.GetBytes(strcmd);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            switch (cmd[1])
+            {
+                case (byte)'c':// cfg info
+                    break;
+                case (byte)'h':// host test info
+                    break;
+                case (byte)'s':// slave test info
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }

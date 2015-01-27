@@ -685,6 +685,10 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "工作信道";
             // 
+            // serialPort
+            // 
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort_DataReceived);
+            // 
             // CFG_TOOL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
