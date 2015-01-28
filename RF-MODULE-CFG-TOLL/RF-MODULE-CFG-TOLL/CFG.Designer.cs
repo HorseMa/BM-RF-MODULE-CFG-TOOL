@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.comport = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.softwareversion = new System.Windows.Forms.TextBox();
+            this.moduleid = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.opendevice = new System.Windows.Forms.Button();
             this.serialportlist = new System.Windows.Forms.ComboBox();
@@ -54,7 +54,7 @@
             this.baudrate = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.hardwareversion = new System.Windows.Forms.TextBox();
             this.test = new System.Windows.Forms.GroupBox();
             this.mode = new System.Windows.Forms.CheckBox();
             this.gbtestslave = new System.Windows.Forms.GroupBox();
@@ -95,8 +95,8 @@
             // 
             // comport
             // 
-            this.comport.Controls.Add(this.textBox2);
-            this.comport.Controls.Add(this.textBox3);
+            this.comport.Controls.Add(this.softwareversion);
+            this.comport.Controls.Add(this.moduleid);
             this.comport.Controls.Add(this.label9);
             this.comport.Controls.Add(this.opendevice);
             this.comport.Controls.Add(this.serialportlist);
@@ -108,21 +108,21 @@
             this.comport.Text = "端口";
             this.comport.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // textBox2
+            // softwareversion
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(87, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(73, 21);
-            this.textBox2.TabIndex = 5;
+            this.softwareversion.Enabled = false;
+            this.softwareversion.Location = new System.Drawing.Point(87, 71);
+            this.softwareversion.Name = "softwareversion";
+            this.softwareversion.Size = new System.Drawing.Size(73, 21);
+            this.softwareversion.TabIndex = 5;
             // 
-            // textBox3
+            // moduleid
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(87, 98);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(73, 21);
-            this.textBox3.TabIndex = 3;
+            this.moduleid.Enabled = false;
+            this.moduleid.Location = new System.Drawing.Point(87, 98);
+            this.moduleid.Name = "moduleid";
+            this.moduleid.Size = new System.Drawing.Size(73, 21);
+            this.moduleid.TabIndex = 3;
             // 
             // label9
             // 
@@ -380,13 +380,13 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "模块软件版本";
             // 
-            // textBox1
+            // hardwareversion
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(99, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(73, 21);
-            this.textBox1.TabIndex = 4;
+            this.hardwareversion.Enabled = false;
+            this.hardwareversion.Location = new System.Drawing.Point(99, 56);
+            this.hardwareversion.Name = "hardwareversion";
+            this.hardwareversion.Size = new System.Drawing.Size(73, 21);
+            this.hardwareversion.TabIndex = 4;
             // 
             // test
             // 
@@ -436,6 +436,7 @@
             this.tstslavepktrcvcnt.Name = "tstslavepktrcvcnt";
             this.tstslavepktrcvcnt.Size = new System.Drawing.Size(52, 21);
             this.tstslavepktrcvcnt.TabIndex = 8;
+            this.tstslavepktrcvcnt.Text = "00";
             // 
             // label22
             // 
@@ -453,6 +454,7 @@
             this.tstslaverssi.Name = "tstslaverssi";
             this.tstslaverssi.Size = new System.Drawing.Size(47, 21);
             this.tstslaverssi.TabIndex = 6;
+            this.tstslaverssi.Text = "00";
             // 
             // tstslavebaudrate
             // 
@@ -570,6 +572,7 @@
             this.tsthosterr.Name = "tsthosterr";
             this.tsthosterr.Size = new System.Drawing.Size(52, 21);
             this.tsthosterr.TabIndex = 13;
+            this.tsthosterr.Text = "0%";
             // 
             // tsthostpktrcvcnt
             // 
@@ -578,6 +581,7 @@
             this.tsthostpktrcvcnt.Name = "tsthostpktrcvcnt";
             this.tsthostpktrcvcnt.Size = new System.Drawing.Size(52, 21);
             this.tsthostpktrcvcnt.TabIndex = 12;
+            this.tsthostpktrcvcnt.Text = "0";
             // 
             // tsthostrssi
             // 
@@ -586,6 +590,7 @@
             this.tsthostrssi.Name = "tsthostrssi";
             this.tsthostrssi.Size = new System.Drawing.Size(47, 21);
             this.tsthostrssi.TabIndex = 11;
+            this.tsthostrssi.Text = "00";
             // 
             // label17
             // 
@@ -612,6 +617,7 @@
             this.tsthostpktsendcnt.Name = "tsthostpktsendcnt";
             this.tsthostpktsendcnt.Size = new System.Drawing.Size(47, 21);
             this.tsthostpktsendcnt.TabIndex = 8;
+            this.tsthostpktsendcnt.Text = "0";
             // 
             // label15
             // 
@@ -695,7 +701,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 405);
             this.Controls.Add(this.test);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.hardwareversion);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cfg);
@@ -739,9 +745,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox hardwareversion;
+        private System.Windows.Forms.TextBox softwareversion;
+        private System.Windows.Forms.TextBox moduleid;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button writecfg;

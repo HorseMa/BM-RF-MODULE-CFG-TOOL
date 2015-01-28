@@ -246,6 +246,38 @@ namespace RF_MODULE_CFG_TOLL
             }
             if (hostteststart.Text == "开始测试")
             {
+                byte[] cmd = new byte[40];
+                cmd[0] = (byte)'t';
+                cmd[1] = (byte)'h';
+
+                int channel = Convert.ToInt32(tsthostchannel.Text);
+                int speed = Convert.ToInt32(tsthostairbaudrate.Text);
+                int len = Convert.ToInt32(tsthostdatalen.Text);
+                int power = Convert.ToInt32(tsthostairpower.Text);
+
+                cmd[2] = (byte)(channel / 100 + 0x30);
+                cmd[3] = (byte)(channel % 100 / 10 + 0x30);
+                cmd[4] = (byte)(channel % 10 + 0x30);
+
+                cmd[5] = (byte)(speed / 1000000 + 0x30);
+                cmd[6] = (byte)(speed % 1000000 / 100000 + 0x30);
+                cmd[7] = (byte)(speed % 100000 / 10000 + 0x30);
+                cmd[8] = (byte)(speed % 10000 / 1000 + 0x30);
+                cmd[9] = (byte)(speed % 1000 / 100 + 0x30);
+                cmd[10] = (byte)(speed % 100 / 10 + 0x30);
+                cmd[11] = (byte)(speed % 10 + 0x30);
+
+                cmd[12] = (byte)(len % 1000 / 100 + 0x30);
+                cmd[13] = (byte)(len % 100 / 10 + 0x30);
+                cmd[14] = (byte)(len % 10 + 0x30);
+
+                cmd[15] = (byte)(power % 1000 / 100 + 0x30);
+                cmd[16] = (byte)(power % 100 / 10 + 0x30);
+                cmd[17] = (byte)(power % 10 + 0x30);
+
+                string pcack = System.Text.Encoding.Default.GetString(cmd);
+                serialPort.WriteLine(pcack);
+
                 hostteststart.Text = "停止测试";
             }
             else
@@ -263,6 +295,26 @@ namespace RF_MODULE_CFG_TOLL
             }
             if (slaveteststart.Text == "开始测试")
             {
+                int channel = Convert.ToInt32(tstslavechannel.Text);
+                int speed = Convert.ToInt32(tstslavebaudrate.Text);
+                byte[] cmd = new byte[40];
+                cmd[0] = (byte)'t';
+                cmd[1] = (byte)'s';
+                cmd[2] = (byte)(channel / 100 + 0x30);
+                cmd[3] = (byte)(channel % 100 / 10 + 0x30);
+                cmd[4] = (byte)(channel % 10 + 0x30);
+
+                cmd[5] = (byte)(speed / 1000000 + 0x30);
+                cmd[6] = (byte)(speed % 1000000 / 100000 + 0x30);
+                cmd[7] = (byte)(speed % 100000 / 10000 + 0x30);
+                cmd[8] = (byte)(speed % 10000 / 1000 + 0x30);
+                cmd[9] = (byte)(speed % 1000 / 100 + 0x30);
+                cmd[10] = (byte)(speed % 100 / 10 + 0x30);
+                cmd[11] = (byte)(speed % 10 + 0x30);
+
+                string pcack = System.Text.Encoding.Default.GetString(cmd);
+                serialPort.WriteLine(pcack);
+
                 slaveteststart.Text = "停止测试";
             }
             else
@@ -486,13 +538,70 @@ namespace RF_MODULE_CFG_TOLL
                 MessageBox.Show(ex.Message);
                 return;
             }
-            switch (cmd[1])
+            switch (cmd[0])
             {
                 case (byte)'c':// cfg info
+                    Array.Copy(cmd, 1, temp, 0, 4);
+                    hardwareversion.Text = Encoding.ASCII.GetString(temp);  // 硬件版本
+                    temp = new byte[10];
+                    Array.Copy(cmd, 5, temp, 0, 4);
+                    softwareversion.Text = Encoding.ASCII.GetString(temp);  // 软件版本
+                    temp = new byte[10];
+                    Array.Copy(cmd, 9, temp, 0, 8);
+                    moduleid.Text = Encoding.ASCII.GetString(temp);    // 出厂编号
+                    temp = new byte[10];
+                    Array.Copy(cmd, 17, temp, 0, 3);
+                    channel.Text = Encoding.ASCII.GetString(temp);      // 收发信道
+                    temp = new byte[10];
+                    Array.Copy(cmd, 20, temp, 0, 6);
+                    airbaudrate.Text = Encoding.ASCII.GetString(temp);    // 空中速率
+                    temp = new byte[10];
+                    Array.Copy(cmd, 26, temp, 0, 6);
+                    baudrate.Text = Encoding.ASCII.GetString(temp);   // 串口速率
+                    temp = new byte[10];
+                    Array.Copy(cmd,32,temp,0,3);
+                    airpower.Text = Encoding.ASCII.GetString(temp);    // 发射功率
+                    temp = new byte[10];
+                    Array.Copy(cmd,35,temp,0,1);
+                    paritybit.Text = Encoding.ASCII.GetString(temp);    // 串口校验位
+                    temp = new byte[10];
+                    Array.Copy(cmd,36,temp,0,1);
+                    databit.Text = Encoding.ASCII.GetString(temp);    // 串口数据位
+                    temp = new byte[10];
+                    Array.Copy(cmd,37,temp,0,1);
+                    stopbit.Text = Encoding.ASCII.GetString(temp);    // 串口停止位
+                    string pcack = "ack";
+                    serialPort.WriteLine(pcack);
+                    /*temp = new byte[10];
+                    Array.Copy(cmd, 32, temp, 0, 4);
+                    nextpointaddr.Text = Encoding.ASCII.GetString(temp);    // 下一跳地址
+                    temp = new byte[10];
+                    Array.Copy(cmd, 36, temp, 0, 4);
+                    prepointaddr.Text = Encoding.ASCII.GetString(temp);     // 上一跳地址
+                    temp = new byte[4];*/
                     break;
                 case (byte)'h':// host test info
+                    temp = new byte[10];
+                    Array.Copy(cmd, 1, temp, 0, 5);
+                    tsthostpktsendcnt.Text = Encoding.ASCII.GetString(temp);  // 主机发送包数
+                    temp = new byte[10];
+                    Array.Copy(cmd, 6, temp, 0, 5);
+                    tsthostpktrcvcnt.Text = Encoding.ASCII.GetString(temp);  // 主机接收
+                    temp = new byte[10];
+                    Array.Copy(cmd, 11, temp, 0, 2);
+                    tsthostrssi.Text = Encoding.ASCII.GetString(temp);  // 从机场强
+                    temp = new byte[10];
+                    Array.Copy(cmd, 13, temp, 0, 2);
+                    tsthosterr.Text = Encoding.ASCII.GetString(temp);  // 丢包概率
+                    tsthosterr.Text += '%';
                     break;
                 case (byte)'s':// slave test info
+                    temp = new byte[10];
+                    Array.Copy(cmd, 1, temp, 0, 2);
+                    tsthostrssi.Text = Encoding.ASCII.GetString(temp);  // 主机场强
+                    temp = new byte[10];
+                    Array.Copy(cmd, 3, temp, 0, 5);
+                    tstslavepktrcvcnt.Text = Encoding.ASCII.GetString(temp);  // 接收包数
                     break;
                 default:
                     break;
